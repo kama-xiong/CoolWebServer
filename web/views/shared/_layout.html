@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "partial/header.html"  %}
+</head>
+<body>
+    {% include "partial/topnav.html" if_exists %}
+
+    <div class="row container-inner">
+    {% block content %}
+        <h1> This is my Test</h1>
+        {% endblock %}
+
+    </div>
+<div class="row row-content" >
+
+
+</div>
+
+
+
+</div>
+
+
+
+<!--<div class="row">-->
+<!--    <a href="#" class="th">-->
+<!--        <img src="/static/za.jpg" alt="ZA"/>-->
+<!--    </a>-->
+<!--</div>-->
+
+<!-- footer-->
+{% include "partial/footer.html" if_exists %}
+<!-- 初始化 Foundation JS -->
+<script>
+    $(document).ready(function() {
+        $(document).foundation();
+    })
+</script>
+
+</body>
+</html>
+

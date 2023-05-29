@@ -1,0 +1,17 @@
+.row-nav,.row-foot{
+    max-width: 1600px;
+}
+.row-content{
+    max-width: 1400px;
+}
+.foot-copy{
+    font-size:10px;
+}
+.container-inner{
+    min-height: 700px;
+    min-width: 1600px;
+    
+}
+.pricing-table .bullet-item {
+    padding: 0.4rem;
+}

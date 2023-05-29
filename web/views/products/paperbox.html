@@ -1,0 +1,57 @@
+{%  extends "/shared/_layout.html" %}
+{% block content %}
+<br>
+<div class="container-inner">
+  <div class="row row-content">
+    <div class="medium-4 columns">
+      <div class="row">
+        <div class="medium-12 columns">
+          <img src="{{ Model.CurCategory.ImgUrl }}" />
+        </div>
+      </div>
+      <div class="row" style="padding-top:20px">
+        {% for item in Model.NavCategories %}
+        <div class="medium-2 columns end">
+          <a href="{{item.Route}}">{{item.Name}}</a>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+    <div class="medium-8 columns">
+
+      {% if Model.Products|length ==0 %}
+      {% for ditem in Model.NavCategories %}
+      <div class="medium-4 large-4 columns end">
+        <a href="{{ditem.Route}}" class="th">
+          <img src="{{ditem.ImgUrl}}" alt="{{ditem.Name}}">
+        </a>
+      </div>
+      {% endfor %}
+      {% else %}
+      {% for ditem in Model.Products %}
+      <div class="medium-4 large-4 columns end">
+        <a href="#" class="th">
+          <img src="{{ditem.ImgUrl}}" alt="{{ditem.Name}}">
+        </a>
+        <!--            <p class="text-center">{{item.Name}}</p>-->
+        <div>
+          <ul class="pricing-table">
+            <li class="title">{{ditem.Name}}</li>
+            <li class="bullet-item">Size:{{ditem.Size}}</li>
+            <li class="bullet-item">{{ditem.PackingInfo}}</li>
+            <li class="bullet-item">CBM: {{ditem.Cbm}} Kg</li>
+            <li class="bullet-item">G.W.: {{ditem.Gw}} Kg</li>
+            <li class="bullet-item">N.W.: {{ditem.Nw}} Kg</li>
+          </ul>
+        </div>
+      </div>
+      {%endfor%}
+      {%endif%}
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+
