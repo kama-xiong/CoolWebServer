@@ -70,23 +70,19 @@ func (*CategoryService) UpdateNode(node models.Category) {
 	datasource.Db.Save(&node)
 
 }
-func (*CategoryService) GetCategoriesByName(category ...string) *models.PageData {
-	var boxcategory string
-	var smallcategory string
-	if len(category) == 1 {
-		boxcategory = category[0]
-	} else if len(category) == 2 {
-		boxcategory = category[0]
-		smallcategory = category[1]
-	}
+func (*CategoryService) GetCategoriesByName(bigcategory string, category ...string) *models.PageData {
 	pdata := models.PageData{}
-	//获取PaperBox Category
-	datasource.Db.Model(&models.Category{}).Where("name=? and layer=?", boxcategory, 1).First(&pdata.ParentCategory)
-	//获取当前 Category
-	datasource.Db.Model(&models.Category{}).Where("name=? and lft>? and rgt<?", smallcategory, pdata.ParentCategory.Lft, pdata.ParentCategory.Rgt).Find(&pdata.CurCategory)
-
+	//获取bigcategory
+	datasource.Db.Model(&models.Category{}).Where("name=? and layer=?", bigcategory, 1).First(&pdata.ParentCategory)
+	if len(category) > 0 {
+		//获取当前 CurCategory
+		datasource.Db.Model(&models.Category{}).Where("name=? and lft>? and rgt<?", category[0], pdata.ParentCategory.Lft, pdata.ParentCategory.Rgt).Find(&pdata.CurCategory)
+	} else {
+		pdata.CurCategory = pdata.ParentCategory
+	}
+	//如果当前节点是终端结点，刚抓取产品数据，否则抓取下层目录数据
 	if pdata.CurCategory.Rgt-pdata.CurCategory.Lft == 1 {
-		datasource.Db.Model(&models.Product{}).Where("category_id=?", pdata.CurCategory.ID).Find(&pdata.Proucts)
+		datasource.Db.Model(&models.Product{}).Where("category_id=?", pdata.CurCategory.ID).Find(&pdata.Products)
 	} else {
 		datasource.Db.Model(&models.Category{}).Where("lft>? and rgt<? and layer=?", pdata.CurCategory.Lft, pdata.CurCategory.Rgt, pdata.CurCategory.Layer+1).Find(&pdata.NavCategories)
 

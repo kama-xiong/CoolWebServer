@@ -1,43 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {% include "partial/header.html"  %}
+    <head>
+        <title>Gstar Packaging Corporation-{{title}}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
+        <link rel="stylesheet" href="/static/css/site.css">
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/foundation/5.5.3/js/foundation.min.js"></script>
+        <script src="https://cdn.staticfile.org/foundation/5.5.3/js/vendor/modernizr.js"></script>
+    </head>
 </head>
 <body>
-    {% include "partial/topnav.html" if_exists %}
+    <div class="row" >
+        <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="/">GstarPak</a></h1>
+                </li>
+                <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+            </ul>
 
-    <div class="row container-inner">
-    {% block content %}
+            <section class="top-bar-section">
+                <ul class="left">
+                    <li ><a href="/about">About Us</a></li>
+                    <li ><a href="/product/paperbox">Paper Box</a></li>
+                    <li ><a href="/product/coveredbox">Covered Box</a></li>
+                    <li ><a href="/product/paperbag">Paper Bag</a></li>
+                    <li ><a href="/product/pouch">Pouch</a></li>
+                    <li ><a href="/product/display">Display</a></li>
+                    <li ><a href="/news">News</a></li>
+                    <li ><a href="/contact">Contact Us</a></li>
+                </ul>
+            </section>
+        </nav>
+    </div>
+    <div class="row">
+        {% block content %}
         <h1> This is my Test</h1>
         {% endblock %}
-
     </div>
-<div class="row row-content" >
-
-
-</div>
-
-
-
-</div>
-
-
-
-<!--<div class="row">-->
-<!--    <a href="#" class="th">-->
-<!--        <img src="/static/za.jpg" alt="ZA"/>-->
-<!--    </a>-->
-<!--</div>-->
 
 <!-- footer-->
-{% include "partial/footer.html" if_exists %}
-<!-- 初始化 Foundation JS -->
-<script>
-    $(document).ready(function() {
-        $(document).foundation();
-    })
-</script>
+    <hr>
+    <div class="row">
+        <div class="large-12 columns text-center ">
+            <p class="foot-copy">Copyright ©2006-2023 Gstar Packaging Corporation, All Rights Reserved</p>
+            <p class="foot-copy">中山吉星包装有限公司版权所有</p>
+            <p class="foot-copy"><a href="https://beian.miit.gov.cn">粤ICP备19063697号</a></p>
+        </div>
+    </div>
 
+    <script>
+        // li标签点击添加active效果
+        $("ul li").click(function() {
+            $(this).siblings('li').removeClass('active');  // 删除其兄弟元素的样式
+            $(this).addClass('active');                    // 为点击元素添加样式
+        });
+    </script>
+<!-- 初始化 Foundation JS -->
+    <script>
+        $(document).ready(function() {
+            $(document).foundation();
+        })
+    </script>
 </body>
 </html>
 

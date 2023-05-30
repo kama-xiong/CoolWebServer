@@ -6,34 +6,23 @@ import (
 )
 
 func ProductPartyHandler(products iris.Party) {
-	products.Get("/paperbox/", mainPaperboxCategoryHandler)
-	products.Get("/paperbox/{name:string}", smallPaperboxCategoryHandler)
+	products.Get("/{bigcategory:string}/", mainCategoryHandler)
+	products.Get("/{bigcategory:string}/{smallcategory:string}", smallCategoryHandler)
 
 }
 
-func mainPaperboxCategoryHandler(ctx iris.Context) {
+func mainCategoryHandler(ctx iris.Context) {
 	ser := services.CategoryService{}
-	pagedata := ser.GetCategoriesByName("paper box")
+	bigcategory := ctx.Params().Get("bigcategory")
+	pagedata := ser.GetCategoriesByName(bigcategory)
 	ctx.ViewData("Model", *pagedata)
 	ctx.View("/products/paperbox.html")
 }
-func smallPaperboxCategoryHandler(ctx iris.Context) {
+func smallCategoryHandler(ctx iris.Context) {
 	ser := services.CategoryService{}
-	name := ctx.Params().Get("name")
-	pagedata := ser.GetCategoriesByName(name)
-	ctx.ViewData("Model", *pagedata)
-	ctx.View("/products/paperbox.html")
-}
-func mainCoveredboxCategoryHandler(ctx iris.Context) {
-	ser := services.CategoryService{}
-	pagedata := ser.GetCategoriesByName("covered box")
-	ctx.ViewData("Model", *pagedata)
-	ctx.View("/products/paperbox.html")
-}
-func smallCoveredCategoryHandler(ctx iris.Context) {
-	ser := services.CategoryService{}
-	name := ctx.Params().Get("name")
-	pagedata := ser.GetCategoriesByName(name)
+	bigcategory := ctx.Params().Get("bigcategory")
+	smallcategory := ctx.Params().Get("smallcategory")
+	pagedata := ser.GetCategoriesByName(bigcategory, smallcategory)
 	ctx.ViewData("Model", *pagedata)
 	ctx.View("/products/paperbox.html")
 }

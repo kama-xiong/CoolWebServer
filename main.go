@@ -18,6 +18,7 @@ func main() {
 		ctx.Redirect("/about")
 	})
 	app.Get("/contact", handlers.ContactHandler)
+	///app.Get("/news", handlers.NewsHandler)
 
 	app.Run(iris.Addr(":8090"), iris.WithCharset("UTF-8"))
 

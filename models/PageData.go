@@ -4,7 +4,7 @@ type PageData struct {
 	ParentCategory Category
 	CurCategory    Category
 	NavCategories  []Category
-	Proucts        []Product
+	Products       []Product
 	PageNumber     int
 	PageSize       int
 	TotalCount     int

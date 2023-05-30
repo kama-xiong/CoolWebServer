@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  {% include "partial/header.html"  %}
-</head>
-<body>
-{% include "partial/topnav.html" if_exists %}
-<hr>
-
-<div class="row row-content" >
+{% extends "/shared/_layout.html" %}
+{% block content %}
+<div class="row container-inner" >
   <div style="padding:20px;">
     <div class="panel">
       <h3>Professional Jewelry Manufacturer</h3>
@@ -22,30 +15,6 @@
     </div>
   </div>
   <div class="large-2 columns"></div>
-
 </div>
-
-
-
-</div>
-
-
-
-<!--<div class="row">-->
-<!--    <a href="#" class="th">-->
-<!--        <img src="/static/za.jpg" alt="ZA"/>-->
-<!--    </a>-->
-<!--</div>-->
-
-<!-- footer-->
-{% include "partial/footer.html" if_exists %}
-<!-- 初始化 Foundation JS -->
-<script>
-  $(document).ready(function() {
-    $(document).foundation();
-  })
-</script>
-
-</body>
-</html>
+{% endblock %}
 
