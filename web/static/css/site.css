@@ -16,3 +16,13 @@
 .pricing-table .bullet-item {
     padding: 0.4rem;
 }
+.top-bar {
+    background: #96b97d
+}
+.top-bar-section
+li:not(.has-form) a:not(.button) {
+    background: #96b97d
+}
+.panel {
+    background: #f9f9f9
+}
